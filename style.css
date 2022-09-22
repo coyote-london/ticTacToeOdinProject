@@ -1,0 +1,127 @@
+@media screen {
+    body {
+        font-size: 2vw;
+    }
+    
+}
+
+
+#gameContainer {
+    display: grid; 
+    grid-template-columns: 2fr .5fr 2fr .5fr 2fr;
+    grid-template-rows: 2fr .5fr 2fr .5fr 2fr;
+    min-height: 24rem;
+    max-width: 24rem;
+
+    margin: 4rem;
+    margin-top: 1.5rem;
+}
+
+.moveContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.borderColumn,
+.borderRow {
+    background-color: black;
+}
+
+.moveContainer {
+    font-size: 3rem;
+}
+
+#startContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#x1y3 {
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+
+#topLeftColumn {
+    grid-row: 1/2;
+    grid-column: 2/3;
+}
+
+#x2y3 {
+    grid-row: 1/2;
+    grid-column: 3/4;
+}
+
+#topRightColumn {
+    grid-row: 1/2;
+    grid-column: 4/5;
+}
+
+#x3y3 {
+    grid-row: 1/2;
+    grid-column: 5/6;
+}
+
+#topRowBorder {
+    grid-row: 2/3;
+    grid-column: 1/6;
+}
+
+#x1y2 {
+    grid-row: 3/4;
+    grid-column: 1/2;
+}
+
+#middleLeftColumn {
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+#x2y2 {
+    grid-row: 3/4;
+    grid-column: 3/4;
+}
+
+#middleRightColumn {
+    grid-row: 3/4;
+    grid-column: 4/5;
+}
+
+#x3y2 {
+    grid-row: 3/4;
+    grid-column: 5/6;
+}
+
+#bottomRowBorder {
+    grid-row: 4/5;
+    grid-column: 1/6;
+}
+
+#x1y1 {
+    grid-row: 5/6;
+    grid-column: 1/2;
+}
+
+#bottomLeftColumn {
+    grid-row: 5/6;
+    grid-column: 2/3;
+}
+
+#x2y1 {
+    grid-row: 5/6;
+    grid-column: 3/4;
+}
+
+#bottomRightColumn {
+    grid-row: 5/6;
+    grid-column: 4/5;
+}
+
+#x3y1 {
+    grid-row: 5/6;
+    grid-column: 5/6;
+}
+
+
