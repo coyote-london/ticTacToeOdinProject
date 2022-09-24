@@ -1,222 +1,226 @@
-const playerMaker = (name, character) => {    
-    let movesMade = [];
-    let turnOver = false;
-    let getMove = () => {
-        let moveChoosen = false
-        while (moveChoosen == false) {
-            console.log(name + '\'s move has begun')
-            document.addEventListener('keydown', e => {
-                console.log(e.key);
-                switch(e.key) {
-                    case '1':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
-                        
-                    case '2':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {                            movesMade.push(e.key)
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
+//Make gameBoardMaker
+//attach board elements to variables
+//render current state
+//check current state
+
+//Make playerMaker
+//store name and character
+//make move
+//store move
+
+//Make gameMaker
+//make new player1, player2, and gameboard
+//start game loop {
+    //start player1's turn
+    //check the turn for win state
+    //if no win state start player2's turn
+    //check win state
+    //repeat
+//}end game loop
+//Display who won and offer to restart game
+
+const gameBoardMaker = (player1, player2) => {
     
-                    case '3':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
-                
-                    case '4':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {                            
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
-                
-                    case '5':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                        movesMade.push(e.key)
-                        console.log(movesMade)
-                        moveChoosen = true;
-                        break;
-                        }
-        
-                    case '6':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;    
-                        }
-            
-                    case '7':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
-                        
-                    case '8':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
+    const _player1 = player1;
+    const _player2 = player2;
     
-                    case '9':
-                        if (movesMade.includes(e.key)) {
-                            window.alert('Move Already Made')
-                        }
-                        else {
-                            movesMade.push(e.key)
-                            console.log(movesMade)
-                            moveChoosen = true;
-                            break;
-                        }
-                    }
-            });
+    const button1 = document.getElementById('button1');
+    const button2 = document.getElementById('button2');
+    const button3 = document.getElementById('button3');
+    const button4 = document.getElementById('button4');
+    const button5 = document.getElementById('button5');
+    const button6 = document.getElementById('button6');
+    const button7 = document.getElementById('button7');
+    const button8 = document.getElementById('button8');
+    const button9 = document.getElementById('button9');
+    const message = document.getElementById('title');
+    
+    const buttonArray = [button1, button2, button3, button4, button5, button6, button7, button8, button9];
+    let currentState = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let turnMade = false;
+    let currentTurn = _player1;
+
+    
+    const render = (player) => {
+        for(i=0; i < currentState.length; i++) {
+            buttonArray[i].innerHTML = currentState[i];
+        }
+        checkForWinner(player);
+        currentTurn == _player1 ?
+            currentTurn = _player2 
+            : 
+            currentTurn = _player1;
+    } 
+    
+    function winState(player) {
+        message.innerHTML = player + ' won';
+        currentState = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        render();
+        currentTurn = _player1;
+    }
+    
+    const checkForWinner = (player) => {
+        if (currentState[0] == currentState[1] && currentState[1] == currentState[2]) {
+            winState(player)
+        }
+
+        else if (currentState[3] == currentState[4] && currentState[4] == currentState[5]) {
+            winState(player)
+        }
+
+        else if (currentState[6] == currentState[7] && currentState[7] == currentState[8]) {
+            winState(player)
+        }
+
+
+
+        else if (currentState[0] == currentState[3] && currentState[3] == currentState[6]) {
+            winState(player)
+        }
+
+        else if (currentState[1] == currentState[4] && currentState[4] == currentState[7]) {
+            winState(player)
+        }
+
+        else if (currentState[2] == currentState[5] && currentState[5] == currentState[8]) {
+            winState(player)
+        }
+
+
+
+        else if (currentState[0] == currentState[4] && currentState[4] == currentState[8]) {
+            winState(player)
+        }
+
+        else if (currentState[2] == currentState[4] && currentState[4] == currentState[6]) {
+            winState(player)
         }
     } 
-    return {name, character, getMove, movesMade};
+    
+    const getMove = (player) => {
+        let moveMade = false;
+        document.addEventListener('keydown', e => {
+            console.log(e.key);
+            e.stopPropagation;
+            switch(e.key) {
+                case '1':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '2':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '3':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '4':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '5':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '6':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '7':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '8':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+                case '9':
+                    if (currentState[0] != '1'){
+                        message.innerHTML = "Not Valid";
+                        break;
+                    }
+                    else {
+                        currentState[0] = player.character;
+                        render(player.name);
+                        getMove(currentTurn);
+                        break;                    
+                    }
+            }
+        })      
+    }
+    const gameLoop = () => {
+        getMove(currentTurn);
+    }
+    return {checkForWinner, render, getMove, gameLoop};
+}
+
+const playerMaker = (name, character) => {
+    return{name, character}
 }
 
 
-const gameBoardMaker = (playerOne, playerTwo) => {
-    let message = document.getElementById('title');
-    let gameStarted = false
 
-    function resetBoard() {
-        button1.innerHTML = 1;
-        button2.innerHTML = 2;
-        button3.innerHTML = 3;
-        button4.innerHTML = 4;
-        button5.innerHTML = 5;
-        button6.innerHTML = 6;
-        button7.innerHTML = 7;
-        button8.innerHTML = 8;
-        button9.innerHTML = 9;
-    }
-    
-    function playerWins(player) {
-        const startButton = document.getElementById('startButton');
-        startButton.innerHTML = 'Restart?'
-        message.innerHTML = player.name + ' wins!';
-        resetBoard();
-        gameStarted = false;
-    }
+let testPlayer1 = playerMaker('Test', 'T');
+let testPlayer2 = playerMaker('Test 2', 'W');
+let testGameBoard = gameBoardMaker(testPlayer1, testPlayer2);
 
-    function draw() {
-        startButton.innerHTML = 'Restart?';
-        message.innerHTML = 'It\'s a draw!';
-        resetBoard();
-        gameStarted = false;
-    }
-    
-    function checkForWinner(array, turnOver) {
-        if(turnOver == false) {
-            return;
-        }
-        else {
-            if (array.includes(1) && array.includes(2) && array.includes(3)) playerWins(player);
-            else if (array.includes(4) && array.includes(5) && array.includes(6)) playerWins(player);
-            else if (array.includes(6) && array.includes(7) && array.includes(9)) playerWins(player);
-    
-            else if (array.includes(1) && array.includes(4) && array.includes(7)) playerWins(player);
-            else if (array.includes(2) && array.includes(5) && array.includes(8)) playerWins(player);
-            else if (array.includes(3) && array.includes(6) && array.includes(9)) playerWins(player);
-    
-            else if (array.includes(1) && array.includes(4) && array.includes(9)) playerWins(player);
-            else if (array.includes(3) && array.includes(4) && array.includes(7)) playerWins(player);    
-        }
-    }
-    
-    return {draw, playerWins, checkForWinner, gameStarted}
+for(i=0; i < 9; i++) {
+    testGameBoard.gameLoop();
 }
-
-let gameLoopMaker = (player1, player2, game) => {
-    let turnState = 'Move: Player 1';
-    if(turnState== 'Move: Player 1') {
-        player1.getMove();
-
-    }
-    
-    
-    
-//We need to get the loop to only access the next line when the player has made a move
-    //Only then will we check the board for a win state
-    //And then we will need to do the same for player2
-
-}
-
-let player1 = {};
-let player2 = {};
-let gameStarted = false;
-
-const startButton = document.getElementById('startButton').addEventListener('click', e => {
-    player1 = playerMaker(window.prompt('Who is Player One?'), window.prompt('What will you play as?'));
-    player2 = playerMaker(window.prompt('Who is Player Two?'), window.prompt('What will you play as?'));
-    game = gameBoardMaker(player1, player2);
-    game.gameStarted = true;
-    let turn = player1.name;
-    while(game.gameStarted == true) {
-        console.log('Game loop started')
-        if (turn == player1.name) {
-            player1.getMove();
-            game.checkForWinner();
-            turn = player2.name;
-        }
-        else if (turn == player2.name) {
-            player2.getMove();
-            game.checkForWinner();
-            turn = player1.name;
-        }
-    }
-});
-
-//Currently have the moves stored in an array
-//Next I need to get that array checked and then
-//figure out how to get it to be player two's turn
-
-
-//get player1 name and character
-//get player 2 name and character
-//decide who goes first
-
-//get second move
-//check for winner/draw
-//get first move and repeat cycle until end state is reached
-//display end state
-//reset board and restart game state
